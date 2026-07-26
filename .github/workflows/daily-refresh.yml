@@ -1,0 +1,33 @@
+name: Daily Refresh
+
+on:
+  schedule:
+    # Runs every day at 6:00 UTC
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update timestamp
+        run: |
+          date -u +"%Y-%m-%d %H:%M:%S UTC" > .last_refresh
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .last_refresh
+
+          git diff --cached --quiet && exit 0
+
+          git commit -m "Daily refresh"
+          git push
