@@ -3,7 +3,7 @@ name: Daily Refresh
 on:
   schedule:
     # Runs every day at 6:00 UTC
-    - cron: "0 6 * * *"
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 permissions:
