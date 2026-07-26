@@ -1,5 +1,5 @@
 
-# install.packages("httr") -- httr2 too new for my current version i think
+# install.packages("httr") ## httr2 too new for my current version i think
 # install.packages("jsonlite")
 
 library(httr)
@@ -32,7 +32,7 @@ sv08_5_dataframe <- as.data.frame(sv08_5_data)
 
 
 # Read in Google Sheet Andrew Made With new Card IDs ---------------------------
-
+gs4_deauth()
 andrew_df <- read_sheet("https://docs.google.com/spreadsheets/d/1yKbs_aZr75_uabxtx7XiEBG1RJ_spL2iNTyYttZuG5M/edit?usp=sharing")
 
 andrew_df <- andrew_df %>% clean_names()
