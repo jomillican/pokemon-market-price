@@ -1,7 +1,4 @@
 
-# install.packages("httr") ## httr2 too new for my current version i think
-# install.packages("jsonlite")
-
 library(httr)
 library(jsonlite)
 library(data.table)
@@ -9,54 +6,56 @@ library(googlesheets4)
 library(dplyr)
 library(janitor)
 library(tidyverse)
+library(lubridate)
+library(plotly)
 
+# Get All Set Abbreviations ----------------------------------------------------
+req <- GET("https://api.tcgdex.net/v2/en/sets")
 
+sets_data <- fromJSON(rawToChar(req$content))
 
-# # Look at all sets to get the Abbreviations needed to identify Andrews cards ---
-# req <- GET("https://api.tcgdex.net/v2/en/sets")
-# 
-# sets_data <- fromJSON(rawToChar(req$content))
-# 
-# sets_dataframe <- as.data.frame(sets_data)
-# 
-# sets_dataframe[which(sets_dataframe$name == 'Chaos Rising'),]
-# 
-# write.csv(sets_dataframe[,c(1,2)], "pokemon_sets_abbrv.csv", row.names = FALSE)
-# 
-# # Look at one set --------------------------------------------------------------
-# req <-GET("https://api.tcgdex.net/v2/en/sets/sv08.5")
-# 
-# sv08_5_data <- fromJSON(rawToChar(req$content))
-# 
-# sv08_5_dataframe <- as.data.frame(sv08_5_data)
-
+abbreviations <- as.data.frame(sets_data)
 
 # Read in Google Sheet Andrew Made With new Card IDs ---------------------------
 gs4_deauth()
-andrew_df <- read_sheet("https://docs.google.com/spreadsheets/d/1yKbs_aZr75_uabxtx7XiEBG1RJ_spL2iNTyYttZuG5M/edit?usp=sharing")
+url <- "https://docs.google.com/spreadsheets/d/1-ZK5xb-zAsddRM5spovJpgV0HK0_ntaHFzjWEfqaCLE/edit?gid=0#gid=0"
+andrew_df <- read_sheet(url)
 
-andrew_df <- andrew_df %>% clean_names()
+andrew_df <- andrew_df %>% 
+  clean_names() %>% 
+  mutate(across(everything(), as.character))
 
-andrew_df_clean <- andrew_df[!is.na(andrew_df$set_id),]
+andrew_df <- andrew_df %>% mutate(across(everything(), ~ na_if(.x, "n/a")))
 
-andrew_df_clean <- andrew_df_clean %>%
-  mutate(tcgdex_id_new = paste0(set_id, "-", str_extract(number, "^[^/]+")))
+andrew_df <- andrew_df %>%
+  left_join((abbreviations %>% select(id, name, logo, symbol)), by = c('set'='name'))
 
-# IGNORE CARD LEVEL FOR RIGHT NOW ----------------------------------------------
+andrew_df <- andrew_df %>%
+  mutate(tcgdex_id = paste0(id, "-", str_extract(number, "^[^/]+"))) %>%
+  mutate(evolution_line = gsub(' Line', '', evolution_line)) %>%
+  mutate(classification = gsub('Yes, ', '', legendary_mythical_pseudo_ultra_beast_paradox_fossil_yes_no))
 
+andrew_df <- andrew_df %>%
+  mutate(set_logo = ifelse(is.na(logo), NA, paste0(logo, '.webp'))) %>%
+  select(
+    tcgdex_id,
+    card,
+    set,
+    number,
+    rarity,
+    artist,
+    pokemon_type,
+    classification,
+    stage,
+    evolution_line,
+    generation_introduced,
+    is_starter = starter_yes_no,
+    is_eeveelution = eeveelution_yes_no,
+    is_trainer_card = trainer_card_yes_no,
+    tcg_player_url,
+    set_logo
+  )
 
-id <- "sv10.5w-094"
-print(id)
-url <- paste0("https://api.tcgdex.net/v2/en/cards/", id)
-
-req <- GET(url)
-
-req$status_code
-
-single_card <- fromJSON(
-  content(req, as = "text", encoding = "UTF-8"),
-  flatten = TRUE
-)
 
 # Columns I want From the API
 cols <- list(
@@ -73,9 +72,11 @@ cols <- list(
   low_price = c("pricing", "tcgplayer", "holofoil", "lowPrice"),
   mid_price = c("pricing", "tcgplayer", "holofoil", "midPrice"),
   high_price = c("pricing", "tcgplayer", "holofoil", "highPrice"),
-  updated =  c("pricing", "tcgplayer", "updated")
+  updated =  c("pricing", "tcgplayer", "updated"),
+  image = c("image")
 )
 
+# Turns Card Into a Data Frame
 card_to_df <- function(card, columns) {
   
   # Helper to extract nested values
@@ -112,6 +113,7 @@ card_to_df <- function(card, columns) {
   as.data.frame(values, stringsAsFactors = FALSE)
 }
 
+# Grabs Card From API -> Stores Data Frame Version or Added to List of Missing
 get_card_df <- function(id) {
   tryCatch({
     url <- paste0("https://api.tcgdex.net/v2/en/cards/", id)
@@ -133,38 +135,21 @@ get_card_df <- function(id) {
   })
 }
 
-# single_card_dataframe <- card_to_df(single_card, cols)
-
-
 # Get Every Card and put it into a dataframe format
-results <- lapply(andrew_df_clean$tcgdex_id_new, get_card_df)
+results <- lapply(andrew_df$tcgdex_id, get_card_df)
 
 # Put all the Cards into a dataframe
 cards_df <- bind_rows(lapply(results, `[[`, "card_df"))
 
-# Put all Missing Cards into a dataframe
-missing_df <- data.frame(
-  id = unlist(lapply(results, `[[`, "no_info")),
-  stringsAsFactors = FALSE
-)
+clean_df <- andrew_df %>%
+  left_join(
+    (cards_df %>% select(tcgdex_id = id, image, market_price, low_price, mid_price, high_price, updated)),
+    by = 'tcgdex_id')
 
-# Might be unnecessary now but gets rid of all NA rows
-cards_df_clean <- cards_df[rowSums(!is.na(cards_df)) > 0, ]
+clean_df <- clean_df %>%
+  mutate(image = ifelse(is.na(image), NA, paste0(image, '/high.webp'))) %>%
+  mutate(tcg_player_url = paste0('<a href="', tcg_player_url, '" target="_blank">', 'TCG Player', '</a>')) %>%
+  mutate(updated = as.Date(ymd_hms(updated, tz = "UTC")))
 
-duplicate_rows <- cards_df_clean %>%
-  group_by(id) %>%
-  filter(n() > 1) %>%
-  arrange(id)
-View(duplicate_rows)
-
-
-length(unique(andrew_df_clean$tcgdex_id))
-
-summary(cards_df_clean$market_price)
-
-names(cards_df_clean)
-
-andrew_df_combined <- andrew_df_clean %>%
-  dplyr::select(card, set, number, rarity,
-                artist,pokemon_type,stage,evolution_line,
-                generation_introduced)
+# Have a button that actually triggers update google sheet ????
+# sheet_write(data = clean_df, ss = url, sheet = "Card Data With Market Price")
