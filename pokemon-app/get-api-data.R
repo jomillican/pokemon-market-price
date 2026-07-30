@@ -150,5 +150,15 @@ clean_df <- clean_df %>%
   mutate(tcg_player_url = paste0('<a href="', tcg_player_url, '" target="_blank">', 'TCG Player', '</a>')) %>%
   mutate(updated = as.Date(ymd_hms(updated, tz = "UTC")))
 
-# Have a button that actually triggers update google sheet ????
-# sheet_write(data = clean_df, ss = url, sheet = "Card Data With Market Price")
+
+
+
+
+
+# UPDATE GOOGLE SHEET WITH MARKET PRICE DATA DAILY -----------------------------
+
+
+# Authenticate invisibly using the JSON path
+gs4_auth(path = Sys.getenv("GOOGLE_SHEETS_JSON_PATH"))
+
+sheet_write(data = clean_df, ss = url, sheet = "Card Data With Market Price")
