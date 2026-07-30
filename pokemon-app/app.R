@@ -6,7 +6,7 @@ library(dplyr)
 library(tidyr)
 library(plotly)
 
-rsconnect::writeManifest()
+#rsconnect::writeManifest()
 
 source('get-api-data.R')
 
@@ -544,7 +544,7 @@ server <- function(input, output, session) {
   
   output$cards_table <- renderDT({
     clean_df %>%
-      select(-c(set_logo, image)) %>%
+      select(-c(set_logo, image, tcg_player_url)) %>%
       datatable(
         options = list(
           pageLength = 10,

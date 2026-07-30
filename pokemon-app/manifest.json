@@ -3690,11 +3690,14 @@
     }
   },
   "files": {
+    ".secrets/service-account.json": {
+      "checksum": "5e25bcea3c9564c175ad25f654b59eaf"
+    },
     "app.R": {
-      "checksum": "fe4b894eb9e8836ea9a698ef17e246e6"
+      "checksum": "b7d94b69a36c6af945d9ac7147d08bef"
     },
     "get-api-data.R": {
-      "checksum": "a501d78c347fcf85d711e42eb8608062"
+      "checksum": "924ad6477fb3be347bbc0a3caf9e1074"
     },
     "pokemon-api-investigate.R": {
       "checksum": "88d1e634a2224c7c9e6c7851e3b02500"

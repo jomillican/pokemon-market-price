@@ -147,7 +147,7 @@ andrew_df_google_sheet <- andrew_df %>%
 
 clean_df <- andrew_df_google_sheet %>%
   mutate(image = ifelse(is.na(image), NA, paste0(image, '/high.webp'))) %>%
-  mutate(tcg_player_url = paste0('<a href="', tcg_player_url, '" target="_blank">', 'TCG Player', '</a>')) %>%
+  mutate(url_to_card = paste0('<a href="', tcg_player_url, '" target="_blank">', 'TCG Player', '</a>')) %>%
   mutate(updated = as.Date(ymd_hms(updated, tz = "UTC")))
 
 
