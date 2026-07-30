@@ -159,6 +159,8 @@ clean_df <- andrew_df_google_sheet %>%
 andrew_df_google_sheet <- andrew_df_google_sheet %>%
   select(-c(set_logo, image, low_price, mid_price, high_price)) %>%
   mutate(market_price = paste0('$', market_price)) %>%
+  mutate(tcg_player_url = gs4_formula(sprintf('=HYPERLINK("%s", "%s")', tcg_player_url, 'Card Link'))) %>%
+
   mutate(updated = as.Date(ymd_hms(updated, tz = "UTC")))
 
 
