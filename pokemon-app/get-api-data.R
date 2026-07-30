@@ -140,12 +140,12 @@ results <- lapply(andrew_df$tcgdex_id, get_card_df)
 # Put all the Cards into a dataframe
 cards_df <- bind_rows(lapply(results, `[[`, "card_df"))
 
-clean_df <- andrew_df %>%
+andrew_df_google_sheet <- andrew_df %>%
   left_join(
     (cards_df %>% select(tcgdex_id = id, image, market_price, low_price, mid_price, high_price, updated)),
     by = 'tcgdex_id')
 
-clean_df <- clean_df %>%
+clean_df <- andrew_df_google_sheet %>%
   mutate(image = ifelse(is.na(image), NA, paste0(image, '/high.webp'))) %>%
   mutate(tcg_player_url = paste0('<a href="', tcg_player_url, '" target="_blank">', 'TCG Player', '</a>')) %>%
   mutate(updated = as.Date(ymd_hms(updated, tz = "UTC")))
@@ -156,9 +156,27 @@ clean_df <- clean_df %>%
 
 
 # UPDATE GOOGLE SHEET WITH MARKET PRICE DATA DAILY -----------------------------
+andrew_df_google_sheet <- andrew_df_google_sheet %>%
+  select(-c(set_logo, image, low_price, mid_price, high_price)) %>%
+  mutate(market_price = paste0('$', market_price)) %>%
+  mutate(updated = as.Date(ymd_hms(updated, tz = "UTC")))
 
 
-# Authenticate invisibly using the JSON path
-gs4_auth(path = Sys.getenv("GOOGLE_SHEETS_JSON_PATH"))
+names(andrew_df_google_sheet) <- andrew_df_google_sheet %>%
+  clean_names(case = "none") %>%
+  names() %>%
+  gsub("_", " ", .) %>%
+  tools::toTitleCase()
 
-sheet_write(data = clean_df, ss = url, sheet = "Card Data With Market Price")
+is_server <- Sys.getenv("CONNECT_SERVER") != ""
+
+if(is_server){
+  gs4_auth(path = Sys.getenv("GOOGLE_SHEETS_JSON_PATH"))
+} else {
+  gs4_auth(path = "./.secrets/service-account.json")
+}
+
+sheet_name <- "Card Data With Market Price"
+
+sheet_write(data = andrew_df_google_sheet, ss = url, sheet = sheet_name)
+range_autofit(ss = url, sheet = sheet_name, dimension = "columns")
