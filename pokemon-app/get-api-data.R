@@ -7,7 +7,6 @@ library(dplyr)
 library(janitor)
 library(tidyverse)
 library(lubridate)
-library(plotly)
 
 # Get All Set Abbreviations ----------------------------------------------------
 req <- GET("https://api.tcgdex.net/v2/en/sets")

@@ -4,6 +4,9 @@ library(shinyWidgets)
 library(DT)
 library(dplyr)
 library(tidyr)
+library(plotly)
+
+rsconnect::writeManifest()
 
 source('get-api-data.R')
 
@@ -237,7 +240,7 @@ ui <- fluidPage(
       fluidRow(
         column(12,
                div(class = "datatable-panel",
-                   downloadButton("download_csv", "⬇ Download CSV",
+                   downloadButton("download_csv", "Download CSV",
                                   class = "btn-success",
                                   style = "margin-bottom:14px;"),
                    DTOutput("cards_table")

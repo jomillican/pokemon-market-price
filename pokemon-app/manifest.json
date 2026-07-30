@@ -10,6 +10,28 @@
     "has_parameters": false
   },
   "packages": {
+    "BH": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "BH",
+        "Type": "Package",
+        "Title": "Boost C++ Header Files",
+        "Version": "1.81.0-1",
+        "Date": "2023-01-17",
+        "Author": "Dirk Eddelbuettel, John W. Emerson and Michael J. Kane",
+        "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
+        "Description": "Boost provides free peer-reviewed portable C++ source\nlibraries.  A large part of Boost is provided as C++ template code\nwhich is resolved entirely at compile-time without linking.  This\npackage aims to provide the most useful subset of Boost libraries\nfor template use among CRAN packages. By placing these libraries in\nthis package, we offer a more efficient distribution system for CRAN\nas replication of this code in the sources of other packages is\navoided. As of release 1.81.0-0, the following Boost libraries are\nincluded: 'accumulators' 'algorithm' 'align' 'any' 'atomic' 'beast'\n'bimap' 'bind' 'circular_buffer' 'compute' 'concept' 'config'\n'container' 'date_time' 'detail' 'dynamic_bitset' 'exception'\n'flyweight' 'foreach' 'functional' 'fusion' 'geometry' 'graph' 'heap'\n'icl' 'integer' 'interprocess' 'intrusive' 'io' 'iostreams'\n'iterator' 'lambda2' 'math' 'move' 'mp11' 'mpl' 'multiprecision'\n'numeric' 'pending' 'phoenix' 'polygon' 'preprocessor' 'process'\n'propery_tree' 'random' 'range' 'scope_exit' 'smart_ptr' 'sort'\n'spirit' 'tuple' 'type_traits' 'typeof' 'unordered' 'url' 'utility'\n'uuid'.",
+        "License": "BSL-1.0",
+        "URL": "https://github.com/eddelbuettel/bh,\nhttps://dirk.eddelbuettel.com/code/bh.html",
+        "BugReports": "https://github.com/eddelbuettel/bh/issues",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-01-17 22:52:33 UTC; edd",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-01-22 08:20:02 UTC",
+        "Built": "R 4.3.1; ; 2023-10-20 00:51:44 UTC; windows"
+      }
+    },
     "DBI": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -200,6 +222,35 @@
         "Repository": "CRAN",
         "Date/Publication": "2023-01-22 16:30:02 UTC",
         "Built": "R 4.3.1; x86_64-w64-mingw32; 2023-06-25 00:39:30 UTC; windows",
+        "Archs": "x64"
+      }
+    },
+    "anytime": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "anytime",
+        "Type": "Package",
+        "Title": "Anything to 'POSIXct' or 'Date' Converter",
+        "Version": "0.3.9",
+        "Date": "2020-08-26",
+        "Author": "Dirk Eddelbuettel",
+        "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
+        "Description": "Convert input in any one of character, integer, numeric, factor,\nor ordered type into 'POSIXct' (or 'Date') objects, using one of a number of\npredefined formats, and relying on Boost facilities for date and time parsing.",
+        "URL": "http://dirk.eddelbuettel.com/code/anytime.html",
+        "BugReports": "https://github.com/eddelbuettel/anytime/issues",
+        "License": "GPL (>= 2)",
+        "Encoding": "UTF-8",
+        "Depends": "R (>= 3.2.0)",
+        "Imports": "Rcpp (>= 0.12.9)",
+        "LinkingTo": "Rcpp (>= 0.12.9), BH",
+        "Suggests": "tinytest (>= 1.0.0), gettz",
+        "RoxygenNote": "6.0.1",
+        "NeedsCompilation": "yes",
+        "Packaged": "2020-08-26 17:46:45.898451 UTC; edd",
+        "Repository": "CRAN",
+        "Date/Publication": "2020-08-27 11:40:21 UTC",
+        "Built": "R 4.3.1; x86_64-w64-mingw32; 2023-10-24 01:23:47 UTC; windows",
         "Archs": "x64"
       }
     },
@@ -2112,6 +2163,34 @@
         "Archs": "x64"
       }
     },
+    "packrat": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Type": "Package",
+        "Package": "packrat",
+        "Title": "A Dependency Management System for Projects and their R Package\nDependencies",
+        "Version": "0.9.1",
+        "Authors@R": "c(\nperson(\"Aron\", \"Atkins\", , \"aron@posit.co\", role = c(\"aut\", \"cre\")),\nperson(\"Toph\", \"Allen\", role = \"aut\"),\nperson(\"Kevin\", \"Ushey\", role = \"aut\"),\nperson(\"Jonathan\", \"McPherson\", role = \"aut\"),\nperson(\"Joe\", \"Cheng\", role = \"aut\"),\nperson(\"JJ\", \"Allaire\", role = \"aut\"),\nperson(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n)",
+        "Description": "Manage the R packages your project depends on in an isolated,\nportable, and reproducible way.",
+        "License": "GPL-2",
+        "URL": "https://github.com/rstudio/packrat/",
+        "BugReports": "https://github.com/rstudio/packrat/issues",
+        "Depends": "R (>= 3.0.0)",
+        "Imports": "tools, utils",
+        "Suggests": "devtools, httr, knitr, mockery, rmarkdown, testthat (>=\n3.0.0)",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.1",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-02-27 18:08:33 UTC; aron",
+        "Author": "Aron Atkins [aut, cre],\nToph Allen [aut],\nKevin Ushey [aut],\nJonathan McPherson [aut],\nJoe Cheng [aut],\nJJ Allaire [aut],\nPosit Software, PBC [cph, fnd]",
+        "Maintainer": "Aron Atkins <aron@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-02-27 18:52:29 UTC",
+        "Built": "R 4.3.1; ; 2023-07-23 00:29:50 UTC; windows"
+      }
+    },
     "pillar": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -2167,6 +2246,34 @@
         "Repository": "CRAN",
         "Date/Publication": "2019-09-22 09:20:02 UTC",
         "Built": "R 4.3.1; ; 2023-07-10 16:24:12 UTC; windows"
+      }
+    },
+    "plotly": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "plotly",
+        "Title": "Create Interactive Web Graphics via 'plotly.js'",
+        "Version": "4.10.3",
+        "Authors@R": "c(person(\"Carson\", \"Sievert\", role = c(\"aut\", \"cre\"),\nemail = \"cpsievert1@gmail.com\", comment = c(ORCID = \"0000-0002-4958-2844\")),\nperson(\"Chris\", \"Parmer\", role = \"aut\",\nemail = \"chris@plot.ly\"),\nperson(\"Toby\", \"Hocking\", role = \"aut\",\nemail = \"tdhock5@gmail.com\"),\nperson(\"Scott\", \"Chamberlain\", role = \"aut\",\nemail = \"myrmecocystus@gmail.com\"),\nperson(\"Karthik\", \"Ram\", role = \"aut\",\nemail = \"karthik.ram@gmail.com\"),\nperson(\"Marianne\", \"Corvellec\", role = \"aut\",\nemail = \"marianne.corvellec@igdore.org\", comment = c(ORCID = \"0000-0002-1994-3581\")),\nperson(\"Pedro\", \"Despouy\", role = \"aut\",\nemail = \"pedro@plot.ly\"),\nperson(\"Salim\", \"Brüggemann\", role = \"ctb\",\nemail = \"salim-b@pm.me\", comment = c(ORCID = \"0000-0002-5329-5987\")),\nperson(\"Plotly Technologies Inc.\", role = \"cph\"))",
+        "License": "MIT + file LICENSE",
+        "Description": "Create interactive web graphics from 'ggplot2' graphs and/or a custom interface to the (MIT-licensed) JavaScript library 'plotly.js' inspired by the grammar of graphics.",
+        "URL": "https://plotly-r.com, https://github.com/plotly/plotly.R,\nhttps://plotly.com/r/",
+        "BugReports": "https://github.com/plotly/plotly.R/issues",
+        "Depends": "R (>= 3.2.0), ggplot2 (>= 3.0.0)",
+        "Imports": "tools, scales, httr (>= 1.3.0), jsonlite (>= 1.6), magrittr,\ndigest, viridisLite, base64enc, htmltools (>= 0.3.6),\nhtmlwidgets (>= 1.5.2.9001), tidyr (>= 1.0.0), RColorBrewer,\ndplyr, vctrs, tibble, lazyeval (>= 0.2.0), rlang (>= 0.4.10),\ncrosstalk, purrr, data.table, promises",
+        "Suggests": "MASS, maps, hexbin, ggthemes, GGally, ggalluvial, testthat,\nknitr, shiny (>= 1.1.0), shinytest (>= 1.3.0), curl, rmarkdown,\nCairo, broom, webshot, listviewer, dendextend, sf, png,\nIRdisplay, processx, plotlyGeoAssets, forcats, withr,\npalmerpenguins, rversions, reticulate, rsvg",
+        "LazyData": "true",
+        "RoxygenNote": "7.2.3",
+        "Encoding": "UTF-8",
+        "Config/Needs/check": "tidyverse/ggplot2, rcmdcheck, devtools, reshape2",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-10-20 21:40:32 UTC; cpsievert",
+        "Author": "Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>),\nChris Parmer [aut],\nToby Hocking [aut],\nScott Chamberlain [aut],\nKarthik Ram [aut],\nMarianne Corvellec [aut] (<https://orcid.org/0000-0002-1994-3581>),\nPedro Despouy [aut],\nSalim Brüggemann [ctb] (<https://orcid.org/0000-0002-5329-5987>),\nPlotly Technologies Inc. [cph]",
+        "Maintainer": "Carson Sievert <cpsievert1@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-10-21 22:50:09 UTC",
+        "Built": "R 4.3.2; ; 2023-11-14 04:17:31 UTC; windows"
       }
     },
     "prettyunits": {
@@ -2514,6 +2621,37 @@
         "Built": "R 4.3.1; ; 2023-07-10 18:00:44 UTC; windows"
       }
     },
+    "renv": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "renv",
+        "Type": "Package",
+        "Title": "Project Environments",
+        "Version": "1.0.0",
+        "Authors@R": "c(\nperson(\"Kevin\", \"Ushey\", role = c(\"aut\", \"cre\"), email = \"kevin@rstudio.com\",\ncomment = c(ORCID = \"0000-0003-2880-7407\")),\nperson(\"Hadley\", \"Wickham\", role = c(\"aut\"), email = \"hadley@rstudio.com\",\ncomment = c(ORCID = \"0000-0003-4757-117X\")),\nperson(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n)",
+        "Description": "A dependency management toolkit for R. Using 'renv', you can create\nand manage project-local R libraries, save the state of these libraries to\na 'lockfile', and later restore your library as required. Together, these\ntools can help make your projects more isolated, portable, and reproducible.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://rstudio.github.io/renv/, https://github.com/rstudio/renv",
+        "BugReports": "https://github.com/rstudio/renv/issues",
+        "Imports": "utils",
+        "Suggests": "BiocManager, cli, covr, cpp11, devtools, gitcreds, jsonlite,\nknitr, miniUI, packrat, pak, R6, remotes, reticulate,\nrmarkdown, rstudioapi, shiny, testthat, uuid, waldo, yaml,\nwebfakes",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.3",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "true",
+        "Config/testthat/start-first": "bioconductor,python,install,restore,snapshot,retrieve,remotes",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-07-07 21:11:12 UTC; kevin",
+        "Author": "Kevin Ushey [aut, cre] (<https://orcid.org/0000-0003-2880-7407>),\nHadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>),\nPosit Software, PBC [cph, fnd]",
+        "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-07-07 21:50:02 UTC",
+        "Built": "R 4.3.1; ; 2023-07-23 00:29:50 UTC; windows"
+      }
+    },
     "reprex": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -2605,6 +2743,37 @@
         "Repository": "CRAN",
         "Date/Publication": "2023-08-14 08:40:06 UTC",
         "Built": "R 4.3.1; ; 2023-09-07 03:02:07 UTC; windows"
+      }
+    },
+    "rsconnect": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Type": "Package",
+        "Package": "rsconnect",
+        "Title": "Deploy Docs, Apps, and APIs to 'Posit Connect', 'shinyapps.io',\nand 'RPubs'",
+        "Version": "1.0.1",
+        "Authors@R": "c(\nperson(\"Aron\", \"Atkins\", , \"aron@posit.co\", role = c(\"aut\", \"cre\")),\nperson(\"Toph\", \"Allen\", role = \"aut\"),\nperson(\"Hadley\", \"Wickham\", role = \"aut\"),\nperson(\"Jonathan\", \"McPherson\", role = \"aut\"),\nperson(\"JJ\", \"Allaire\", role = \"aut\"),\nperson(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n)",
+        "Description": "Programmatic deployment interface for 'RPubs',\n'shinyapps.io', and 'Posit Connect'. Supported content types include R\nMarkdown documents, Shiny applications, Plumber APIs, plots, and\nstatic web content.",
+        "License": "GPL-2",
+        "URL": "https://github.com/rstudio/rsconnect",
+        "BugReports": "https://github.com/rstudio/rsconnect/issues",
+        "Depends": "R (>= 3.5.0)",
+        "Imports": "cli, curl, digest, jsonlite, lifecycle, openssl (>= 2.0.0),\npackrat (>= 0.6), renv (>= 1.0.0), rlang (>= 1.0.0), rstudioapi\n(>= 0.5), tools, yaml (>= 2.1.5)",
+        "Suggests": "Biobase, BiocManager, foreign, knitr, MASS, plumber (>=\n0.3.2), quarto, RCurl, reticulate, rmarkdown (>= 1.1), shiny,\ntestthat (>= 3.1.9), webfakes, withr",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "true",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.3",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-07-20 17:09:26 UTC; aron",
+        "Author": "Aron Atkins [aut, cre],\nToph Allen [aut],\nHadley Wickham [aut],\nJonathan McPherson [aut],\nJJ Allaire [aut],\nPosit Software, PBC [cph, fnd]",
+        "Maintainer": "Aron Atkins <aron@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-07-20 19:00:02 UTC",
+        "Built": "R 4.3.1; ; 2023-07-23 01:25:24 UTC; windows"
       }
     },
     "rstudioapi": {
@@ -2776,6 +2945,56 @@
         "Repository": "CRAN",
         "Date/Publication": "2023-07-06 12:30:03 UTC",
         "Built": "R 4.3.1; ; 2023-07-20 14:42:46 UTC; windows"
+      }
+    },
+    "shinyWidgets": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "shinyWidgets",
+        "Title": "Custom Inputs Widgets for Shiny",
+        "Version": "0.8.0",
+        "Authors@R": "c(\nperson(\"Victor\", \"Perrier\", email = \"victor.perrier@dreamrs.fr\", role = c(\"aut\", \"cre\", \"cph\")),\nperson(\"Fanny\", \"Meyer\", role = \"aut\"),\nperson(\"David\", \"Granjon\", role = \"aut\"),\nperson(\"Ian\", \"Fellows\", role = \"ctb\", comment = \"Methods for mutating vertical tabs & updateMultiInput\"),\nperson(\"Wil\", \"Davis\", role = \"ctb\", comment = \"numericRangeInput function\"),\nperson(\"Spencer\", \"Matthews\", role = \"ctb\", comment = \"autoNumeric methods\"),\nperson(family = \"JavaScript and CSS libraries authors\", role = c(\"ctb\", \"cph\"), comment = \"All authors are listed in LICENSE.md\")\n)",
+        "Description": "Collection of custom input controls and user interface components for 'Shiny' applications.\nGive your applications a unique and colorful style !",
+        "URL": "https://github.com/dreamRs/shinyWidgets,\nhttps://dreamrs.github.io/shinyWidgets/",
+        "BugReports": "https://github.com/dreamRs/shinyWidgets/issues",
+        "License": "GPL-3",
+        "Encoding": "UTF-8",
+        "LazyData": "true",
+        "RoxygenNote": "7.2.3",
+        "Depends": "R (>= 3.1.0)",
+        "Imports": "anytime, bslib, sass, shiny (>= 1.6.0), htmltools (>= 0.5.1),\njsonlite, grDevices, rlang",
+        "Suggests": "testthat, covr, ggplot2, DT, scales, shinydashboard,\nshinydashboardPlus",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-08-30 14:04:56 UTC; victorp",
+        "Author": "Victor Perrier [aut, cre, cph],\nFanny Meyer [aut],\nDavid Granjon [aut],\nIan Fellows [ctb] (Methods for mutating vertical tabs &\nupdateMultiInput),\nWil Davis [ctb] (numericRangeInput function),\nSpencer Matthews [ctb] (autoNumeric methods),\nJavaScript and CSS libraries authors [ctb, cph] (All authors are listed\nin LICENSE.md)",
+        "Maintainer": "Victor Perrier <victor.perrier@dreamrs.fr>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-08-30 15:00:02 UTC",
+        "Built": "R 4.3.1; ; 2023-10-24 02:48:39 UTC; windows"
+      }
+    },
+    "shinythemes": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "shinythemes",
+        "Title": "Themes for Shiny",
+        "Version": "1.2.0",
+        "Authors@R": "c(\nperson(\"Winston\", \"Chang\", role = c(\"aut\", \"cre\"), email = \"winston@rstudio.com\"),\nperson(family = \"RStudio\", role = \"cph\"),\nperson(\"Thomas\", \"Park\", role = c(\"ctb\", \"cph\"), comment = \"Bootswatch themes\"),\nperson(\"Lukasz\", \"Dziedzic\", role = c(\"ctb\", \"cph\"), comment = \"Lato font\"),\nperson(\"Nathan\", \"Willis\", role = c(\"ctb\", \"cph\"), comment = \"News Cycle font\"),\nperson(family = \"Google Corporation\", role = c(\"ctb\", \"cph\"), comment = \"Open Sans and Roboto fonts\"),\nperson(\"Matt\", \"McInerney\", role = c(\"ctb\", \"cph\"), comment = \"Raleway font\"),\nperson(family = \"Adobe Systems Incorporated\", role = c(\"ctb\", \"cph\"), comment = \"Source Sans Pro font\"),\nperson(family = \"Canonical Ltd\", role = c(\"ctb\", \"cph\"), comment = \"Ubuntu font\")\n)",
+        "Description": "Themes for use with Shiny. Includes several Bootstrap themes\nfrom <https://bootswatch.com/>, which are packaged for use with Shiny\napplications.",
+        "Depends": "R (>= 3.0.0)",
+        "Imports": "shiny (>= 0.11)",
+        "URL": "https://rstudio.github.io/shinythemes/",
+        "License": "GPL-3 | file LICENSE",
+        "RoxygenNote": "7.1.1",
+        "NeedsCompilation": "no",
+        "Packaged": "2021-01-25 21:27:09 UTC; winston",
+        "Author": "Winston Chang [aut, cre],\nRStudio [cph],\nThomas Park [ctb, cph] (Bootswatch themes),\nLukasz Dziedzic [ctb, cph] (Lato font),\nNathan Willis [ctb, cph] (News Cycle font),\nGoogle Corporation [ctb, cph] (Open Sans and Roboto fonts),\nMatt McInerney [ctb, cph] (Raleway font),\nAdobe Systems Incorporated [ctb, cph] (Source Sans Pro font),\nCanonical Ltd [ctb, cph] (Ubuntu font)",
+        "Maintainer": "Winston Chang <winston@rstudio.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2021-01-25 22:00:02 UTC",
+        "Built": "R 4.3.1; ; 2023-10-24 02:49:03 UTC; windows"
       }
     },
     "snakecase": {
@@ -3472,13 +3691,13 @@
   },
   "files": {
     "app.R": {
-      "checksum": "901bdc1cb56c401fbc4fca3fa00ae051"
+      "checksum": "fe4b894eb9e8836ea9a698ef17e246e6"
+    },
+    "get-api-data.R": {
+      "checksum": "a501d78c347fcf85d711e42eb8608062"
     },
     "pokemon-api-investigate.R": {
-      "checksum": "85725b54052e887fc82cc7904ec2afac"
-    },
-    "pokemon_sets_abbrv.csv": {
-      "checksum": "08a7c2b267ce7f307ca13e38fc8d452d"
+      "checksum": "88d1e634a2224c7c9e6c7851e3b02500"
     }
   },
   "users": null
