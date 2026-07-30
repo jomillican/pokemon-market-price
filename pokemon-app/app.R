@@ -508,14 +508,11 @@ server <- function(input, output, session) {
                    column(6,
                           detail("Generation Introduced",cd$generation_introduced),
                           detail("Starter Pokémon",
-                                 if (!is.na(cd$is_starter))
-                                   ifelse(cd$is_starter, "Yes ⭐", "No") else NA),
+                                 ifelse(cd$is_starter == 'Yes', "Yes ⭐", "No") ),
                           detail("Eeveelution",
-                                 if (!is.na(cd$is_eeveelution))
-                                   ifelse(cd$is_eeveelution, "Yes ⭐", "No") else NA),
+                                 ifelse(cd$is_eeveelution == 'Yes', "Yes ⭐", "No")  ),
                           detail("Trainer Card",
-                                 if (!is.na(cd$is_trainer_card))
-                                   ifelse(cd$is_trainer_card, "Yes", "No") else NA)
+                                 ifelse(cd$is_trainer_card == 'Yes', "Yes ⭐", "No") )
                    )
                  ),
                  
